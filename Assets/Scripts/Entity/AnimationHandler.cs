@@ -6,18 +6,23 @@ using UnityEngine;
 public class AnimationHandler : MonoBehaviour
 {
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
-    
-    protected Animator animator;
+
+    [SerializeField] private Animator animator; // ← 여기에 이 줄 있어야 함
 
     protected virtual void Awake()
     {
-        animator = GetComponentInChildren<Animator>();
+        if (animator == null)
+            animator = GetComponentInChildren<Animator>();
     }
 
     public void Move(Vector2 obj)
     {
-        animator.SetBool(IsMoving, obj.magnitude > .5f);
-        
+        if (animator == null)
+        {
+            Debug.LogWarning("Animator가 연결되어 있지 않습니다!");
+            return;
+        }
+
+        animator.SetBool(IsMoving, obj.magnitude > 0.5f);
     }
-    
 }
