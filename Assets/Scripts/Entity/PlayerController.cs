@@ -1,18 +1,12 @@
+using Entity;
 using UnityEngine;
 
 public class PlayerController : BaseController
 {
-    private Camera camera;
-
-    protected override void Start()
-    {
-        base.Start();
-        camera = Camera.main;
-    }
     void Update()
     {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
+        var moveX = Input.GetAxisRaw("Horizontal");
+        var moveY = Input.GetAxisRaw("Vertical");
 
         Vector3 move = new Vector3(moveX, moveY, 0).normalized;
         transform.position += move * (Time.deltaTime * 5f);
