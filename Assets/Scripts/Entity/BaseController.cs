@@ -26,7 +26,9 @@ namespace Entity
             Rigidbody = GetComponent<Rigidbody2D>();
             animationHandler = GetComponent<AnimationHandler>();
         }
-        
+
+
+
         protected void Update()
         {
             HandleAction();
@@ -36,8 +38,7 @@ namespace Entity
         protected virtual void FixedUpdate()
         {
             Movement(movementDirection);
-            float knockbackDuration = 0;
-            if (knockbackDuration > 0.0f)
+            if(knockbackDuration > 0.0f)
             {
                 knockbackDuration -= Time.fixedDeltaTime;
             }
@@ -58,6 +59,7 @@ namespace Entity
             }
 
             Rigidbody.velocity = direction;
+            
             animationHandler.Move(direction);
         }
 

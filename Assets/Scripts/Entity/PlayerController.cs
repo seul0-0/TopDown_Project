@@ -7,6 +7,7 @@ public class PlayerController : BaseController
     {
         var moveX = Input.GetAxisRaw("Horizontal");
         var moveY = Input.GetAxisRaw("Vertical");
+        movementDirection = new Vector2(moveX, moveY).normalized;
 
         Vector3 move = new Vector3(moveX, moveY, 0).normalized;
         transform.position += move * (Time.deltaTime * 5f);
