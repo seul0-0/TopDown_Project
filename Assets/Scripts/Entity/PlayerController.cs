@@ -1,25 +1,27 @@
-using Entity;
 using UnityEngine;
 
-public class PlayerController : BaseController
+namespace Entity
 {
-    void Update()
+    public class PlayerController : BaseController
     {
-        var moveX = Input.GetAxisRaw("Horizontal");
-        var moveY = Input.GetAxisRaw("Vertical");
-        movementDirection = new Vector2(moveX, moveY).normalized;
-
-        Vector3 move = new Vector3(moveX, moveY, 0).normalized;
-        transform.position += move * (Time.deltaTime * 5f);
-
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        private new void Update()
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
+            var moveX = Input.GetAxisRaw("Horizontal");
+            var moveY = Input.GetAxisRaw("Vertical");
+            movementDirection = new Vector2(moveX, moveY).normalized;
 
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
+            Vector3 move = new Vector3(moveX, moveY, 0).normalized;
+            transform.position += move * (Time.deltaTime * 5f);
+
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
         }
     }
 }
