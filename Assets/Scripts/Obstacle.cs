@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,7 +13,14 @@ public class Obstacle : MonoBehaviour
     public Transform topObject;
     public Transform bottomObject;
 
-    public float widthPadding = 5f;
+    public float widthPadding = 4f;
+    
+    GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+    }
 
     public Vector3 SetRandomPlace(Vector3 lastPosition, int obstacleCount)
     {
@@ -29,4 +37,10 @@ public class Obstacle : MonoBehaviour
         return placePosition;
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Player player = collision.GetComponent<Player>();
+        if (player != null)
+            gameManager.AddScore(1);
+    }
 }
