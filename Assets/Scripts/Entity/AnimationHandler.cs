@@ -26,7 +26,6 @@ namespace Entity
             }
         
             animator.SetBool(IsMoving, obj.magnitude > .5f);
-            Debug.Log(obj);
         
         }
     }
